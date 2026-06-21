@@ -11,6 +11,7 @@ server_name: 'MyServer'
 
 # Changing the Discord Bot Token and Guild ID WILL need you to restart the server for it to take effect, but changing other settings will not require a restart.
 discord_prefix: '&5&lDISCORD &8&l→'
+discord_invite_link: 'https://discord.gg/yourserver' # this is what the plugin will send to the player if there account is already linked
 discord_bot:
   enabled: true
   token: 'DISCORD_BOT_TOKEN'

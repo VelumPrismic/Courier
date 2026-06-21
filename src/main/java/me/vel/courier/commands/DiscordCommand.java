@@ -4,7 +4,6 @@ import me.vel.courier.Courier;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,19 +29,17 @@ public class DiscordCommand implements CommandExecutor {
         String prefix = plugin.getPrefix();
 
         if (plugin.getLinkingManager().isLinked(player.getUniqueId())) {
-            String discordLink = plugin.getConfig().getString("discord.link", "https://discord.gg/GBmXam43QZ");
-            String message = plugin.getConfig().getString("discord_prefix", "&8&l| &5❄ &5&lDISCORD &8&l→ &7Click here to join our Discord server!");
-            
-            Component messageComponent = LegacyComponentSerializer.legacyAmpersand()
-                    .deserialize(message)
+            String discordLink = plugin.getConfig().getString("discord_invite_link", "https://discord.gg/yourserver");
+
+            Component inviteComponent = Component.text(prefix + "§d§nClick here to join our Discord!")
                     .clickEvent(ClickEvent.openUrl(discordLink))
-                    .hoverEvent(HoverEvent.showText(Component.text("Click to open Discord invite.")));
+                    .hoverEvent(HoverEvent.showText(Component.text(" Click to open Discord invite.")));
 
             player.sendMessage("");
-            player.sendMessage(prefix + " §aYour account is already linked!");
-            player.sendMessage(messageComponent);
+            player.sendMessage(prefix + " §aYour account is already linked to Discord!");
+            player.sendMessage(inviteComponent);
             player.sendMessage("");
-            
+
             playSound(player);
             return true;
         }
