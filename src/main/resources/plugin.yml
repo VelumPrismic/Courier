@@ -1,0 +1,15 @@
+name: Courier
+version: '${version}'
+
+main: me.vel.courier.Courier
+api-version: '1.21.11'
+load: POSTWORLD
+
+commands:
+  discord:
+    description: Get the Discord server link
+    usage: /discord
+  discordadmin:
+    description: Discord admin commands
+    usage: /discordadmin <link|unlink|check|reload|resetreward|save|info>
+    permission: courier.discord.admin

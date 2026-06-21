@@ -1,0 +1,71 @@
+########################
+# Discord Bot Settings #
+########################
+
+# The bot only turns on when the server is on and goes offline when the server goes off.
+# Replace the DISCORD_BOT_TOKEN with the actual discord bot token.
+
+# This is used for footers like the status embeds, etc.
+server_ip: 'play.myserver.com'
+server_name: 'MyServer'
+
+# Changing the Discord Bot Token and Guild ID WILL need you to restart the server for it to take effect, but changing other settings will not require a restart.
+discord_prefix: '&5&lDISCORD &8&l→'
+discord_bot:
+  enabled: true
+  token: 'DISCORD_BOT_TOKEN'
+  guild_id: 'DISCORD_SERVER_TOKEN'
+  invite_channel_id: 'WELCOME_CHANNEL_ID' # This is the channel where the player will be invited to
+  linked_role_id: 'LINKED_ROLE_ID' # The role the player will be given upon linking
+  staff_role_id: 'STAFF_ROLE_ID' # Staff role ID
+  timezone: 'GMT'
+
+  # The bot's activity status. Available types: playing, watching, listening, streaming, competing
+  # Changing this requires the bot to restart (a.k.a the plugin), it will not change if you use the /discordadmin reload command.
+  activity_type: 'playing'
+  activity_text: 'Playing MyServer'
+
+  relay_chat: true # Meaning that the chat will be relayed to the discord server
+
+  # Chat filter settings
+  filter:
+    enabled: true
+    case_sensitive: false  # Set to true for case-sensitive filtering
+
+    # List of words to block (partial matches)
+    blocked_words:
+      - "badword1"
+      - "badword2"
+      - "spam"
+
+    # List of regex patterns to block (for more advanced filtering)
+    blocked_patterns:
+      - "(?i)ip:\\s*\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"  # IP addresses
+      - "(?i)discord\\.gg/[a-zA-Z0-9]+"  # Discord invite links
+      # Add more patterns as needed
+
+  log_commands: true # Logs the commands to the console channel
+  console_relay_enabled: true # If false, typing in the console channel won't execute commands
+  send_server_status: true # If true, sends a message when server goes online/offline
+  send_player_joins: true # If true, sends a message when a player joins the server
+  invite_cooldown_minutes: 30 # The cooldown for the /discord command
+  channels:
+    minecraft_chat: 'MINECRAFT_CHAT_CHANNEL_ID' # Where the minecraft messages will be sent, this will also be where the players cant chat and it'll be sent to minecraft.
+    console: 'CONSOLE_CHANNEL_ID' # Where logs will be sent to, you'd also be able to send commands just by typing in this channel
+    status: 'STATUS_CHANNEL_ID' # Where server status and player join messages will be sent
+    filter_log: 'FILTER_LOG_CHANNEL_ID' # Where filtered messages will be logged (staff only channel recommended)
+  chat_format:
+    mc_to_discord: '[{timestamp}] **%player%**: %message%'
+    discord_to_mc: '&9[Discord] &c%user%&7: %message%'
+  rewards:
+    item:
+      enabled: false
+      material: 'DIAMOND'
+      amount: 5
+      name: '&b&lDiscord Link Reward'
+      lore:
+        - '&7Thank you for linking your'
+        - '&7Discord account!'
+        - ''
+    commands:
+      - 'editplayer add %player% economy.essence 10000000'
